@@ -1,34 +1,38 @@
-export default function App() {
- return (
- <main className="min-h-dvh bg-gray-50 grid place-items-center p-6">
- <section className="w-full max-w-xl rounded-2xl border bg-white p-8
-shadow">
- <h1 className="text-3xl font-bold tracking-tight">React 19 + Tailwind
-v4</h1>
- <p className="mt-2 text-gray-600">
- Setup moderno funcionando. Edita <code>src/App.jsx</code> y guarda
-para ver cambios.
- </p>
- <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
- <div className="rounded-xl border p-4">
- <p className="text-sm text-gray-500">Estado</p>
- <p className="text-lg font-semibold">OK ✅</p>
- </div>
- <div className="rounded-xl border p-4">
- <p className="text-sm text-gray-500">Tailwind</p>
- <p className="text-lg font-semibold">v4 (CSS-first)</p>
- </div>
- <div className="rounded-xl border p-4">
- <p className="text-sm text-gray-500">Build</p>
- <p className="text-lg font-semibold">Vite</p>
- </div>
- </div>
- <button className="mt-6 inline-flex items-center justify-center
-rounded-xl border px-4 py-2 font-medium hover:bg-gray-50 active:scale-
-[0.98]">
- Botón Tailwind
- </button>
- </section>
- </main>
- )
-} 
+import { useState } from "react";
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="bg-indigo-600 p-4">
+      <div className="flex items-center justify-between max-w-7xl mx-auto">
+        {/* Logo */}
+        <div className="text-white text-xl font-bold">Mi App</div>
+
+        {/* Menú en pantallas grandes */}
+        <div className="hidden md:flex gap-x-6">
+          <a href="#" className="text-white hover:underline">Inicio</a>
+          <a href="#" className="text-white hover:underline">Servicios</a>
+          <a href="#" className="text-white hover:underline">Contacto</a>
+        </div>
+
+        {/* Botón menú móvil */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-white text-2xl"
+        >
+          {isOpen ? "✕" : "☰"}
+        </button>
+      </div>
+
+      {/* Menú desplegable en móvil */}
+      {isOpen && (
+        <div className="md:hidden mt-4 flex flex-col gap-y-2">
+          <a href="#" className="text-white hover:text-gray-200">Inicio</a>
+          <a href="#" className="text-white hover:text-gray-200">Servicios</a>
+          <a href="#" className="text-white hover:text-gray-200">Contacto</a>
+        </div>
+      )}
+    </nav>
+  );
+}
